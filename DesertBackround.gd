@@ -10,11 +10,15 @@ func _ready():
 
 
 func _process(delta):
-	offsetOffset += round(delta * 4)
-	offset.x = offset.x + offsetOffset
+	offsetOffset += round(delta * 100)
+	scroll_offset.x -= delta * 200.0
 
 
 
 
 func setOffset(pos):
-	offset.x = pos
+	#offset.x = pos - offsetOffset
+	pass
+
+	
+	

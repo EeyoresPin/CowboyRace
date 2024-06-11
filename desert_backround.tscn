@@ -12,6 +12,7 @@ script = ExtResource("1_its57")
 position = Vector2(-51, -5)
 
 [node name="BackroundV1" type="Sprite2D" parent="ParallaxLayer"]
+texture_repeat = 2
 position = Vector2(192, 192)
 scale = Vector2(3, 3)
 texture = ExtResource("2_fvpx8")
@@ -47,8 +48,8 @@ scale = Vector2(50.9531, 4.60938)
 texture = ExtResource("3_ljbsg")
 
 [node name="Ground" type="Sprite2D" parent="ParallaxLayer"]
-position = Vector2(-456.5, 1019)
-scale = Vector2(40.4609, 10)
+position = Vector2(208.501, 1019)
+scale = Vector2(50.8515, 10)
 texture = ExtResource("4_vfcld")
 
 [node name="BackroundV7" type="Sprite2D" parent="ParallaxLayer"]
