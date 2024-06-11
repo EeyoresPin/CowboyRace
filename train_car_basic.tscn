@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp0m4q62sniwa"]
+
+[ext_resource type="Texture2D" uid="uid://bq21afxdha5ql" path="res://Assets/TrainBasic.png" id="1_14noq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sv55d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_14noq")
+}],
+"loop": true,
+"name": &"Closed",
+"speed": 5.0
+}]
+
+[node name="TrainCarBasic" type="StaticBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_sv55d")
+animation = &"Closed"
+
+[node name="Roof" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-80, -15, -80, -20, -75, -20, 75, -20, 80, -20, 80, -15, 80, 25, 75, 25, 75, -5, -75, -5, -75, 0, -80, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-80, 50, 80, 50, 80, 69, 75, 69, 59, 80, -65, 80, -70, 75, -75, 60, -80, 55)

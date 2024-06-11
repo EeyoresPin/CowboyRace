@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://b78i7utyp2m2e"]
+
+[ext_resource type="Texture2D" uid="uid://kwkywguwdjol" path="res://Assets/TrainTrack.png" id="1_ty71t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5eml"]
+size = Vector2(483, 6)
+
+[node name="TrainTrack" type="StaticBody2D"]
+
+[node name="TrainTrack" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+scale = Vector2(5, 5)
+texture = ExtResource("1_ty71t")
+
+[node name="TrainTrack2" type="Sprite2D" parent="."]
+position = Vector2(-160, -9)
+scale = Vector2(5, 5)
+texture = ExtResource("1_ty71t")
+
+[node name="TrainTrack3" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(160, -9)
+scale = Vector2(5, 5)
+texture = ExtResource("1_ty71t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 49)
+shape = SubResource("RectangleShape2D_u5eml")

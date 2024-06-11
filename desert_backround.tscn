@@ -1,0 +1,107 @@
+[gd_scene load_steps=5 format=3 uid="uid://ibh16xbbj1me"]
+
+[ext_resource type="Script" path="res://DesertBackround.gd" id="1_its57"]
+[ext_resource type="Texture2D" uid="uid://b1eg35rcev4bq" path="res://Assets/backroundV1.png" id="2_fvpx8"]
+[ext_resource type="Texture2D" uid="uid://d2nrmx7hxwfma" path="res://Assets/sky.png" id="3_ljbsg"]
+[ext_resource type="Texture2D" uid="uid://dakwely01rplu" path="res://Assets/ground.png" id="4_vfcld"]
+
+[node name="DesertBackround" type="ParallaxBackground"]
+script = ExtResource("1_its57")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+position = Vector2(-51, -5)
+
+[node name="BackroundV1" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(192, 192)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fvpx8")
+
+[node name="BackroundV2" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(575, 192)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fvpx8")
+
+[node name="BackroundV3" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(958, 192)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fvpx8")
+
+[node name="BackroundV4" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(1341, 192)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fvpx8")
+
+[node name="BackroundV5" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(-572, 193)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fvpx8")
+
+[node name="BackroundV6" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(-189, 193)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fvpx8")
+
+[node name="Sky" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(203, -289)
+scale = Vector2(50.9531, 4.60938)
+texture = ExtResource("3_ljbsg")
+
+[node name="Ground" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(-456.5, 1019)
+scale = Vector2(40.4609, 10)
+texture = ExtResource("4_vfcld")
+
+[node name="BackroundV7" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(-2096, 188)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fvpx8")
+
+[node name="BackroundV8" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(-1713, 188)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fvpx8")
+
+[node name="BackroundV9" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(-1330, 188)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fvpx8")
+
+[node name="BackroundV10" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(-947, 188)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fvpx8")
+
+[node name="BackroundV11" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(-2860, 189)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fvpx8")
+
+[node name="BackroundV12" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(-2477, 189)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fvpx8")
+
+[node name="BackroundV13" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(2490, 194)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fvpx8")
+
+[node name="BackroundV14" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(2873, 194)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fvpx8")
+
+[node name="BackroundV15" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(3256, 194)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fvpx8")
+
+[node name="BackroundV16" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(1726, 195)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fvpx8")
+
+[node name="BackroundV17" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(2109, 195)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fvpx8")

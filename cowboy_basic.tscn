@@ -1,0 +1,156 @@
+[gd_scene load_steps=15 format=3 uid="uid://y3l5vdaeqqu4"]
+
+[ext_resource type="Script" path="res://CowboyBasic.gd" id="1_8sx61"]
+[ext_resource type="Texture2D" uid="uid://2uect4vm2n3l" path="res://Assets/CowboyBasicGunShot.png" id="2_8s8y1"]
+[ext_resource type="PackedScene" uid="uid://0kb4jlb058ht" path="res://bullet.tscn" id="2_dqstk"]
+[ext_resource type="Texture2D" uid="uid://br3bwxr3p54gg" path="res://Assets/CowboyFirst.png" id="2_g4ijw"]
+[ext_resource type="Texture2D" uid="uid://cojadmhyiqwb2" path="res://Assets/TempSlideCowboyBasic.png" id="5_hhu4d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etfk7"]
+atlas = ExtResource("2_8s8y1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t07xk"]
+atlas = ExtResource("2_8s8y1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5awtv"]
+atlas = ExtResource("2_8s8y1")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dydsw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_g4ijw")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etfk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t07xk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5awtv")
+}],
+"loop": false,
+"name": &"Shot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_hhu4d")
+}],
+"loop": true,
+"name": &"Slide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_g4ijw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d5ep0"]
+radius = 4.0
+height = 16.0
+
+[sub_resource type="Animation" id="Animation_q3tjh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_c41so"]
+resource_name = "Run"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Run"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_pqigf"]
+resource_name = "Shot"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cs83e"]
+_data = {
+"RESET": SubResource("Animation_q3tjh"),
+"Run": SubResource("Animation_c41so"),
+"Shot": SubResource("Animation_pqigf")
+}
+
+[node name="CowboyBasic" type="CharacterBody2D"]
+script = ExtResource("1_8sx61")
+player_id = null
+bullet = ExtResource("2_dqstk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dydsw")
+animation = &"Slide"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_d5ep0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cs83e")
+}
+
+[node name="LeftGunBarrel" type="Marker2D" parent="."]
+position = Vector2(-5, 2)
+
+[node name="RightGunBarrel" type="Marker2D" parent="."]
+position = Vector2(5, 2)

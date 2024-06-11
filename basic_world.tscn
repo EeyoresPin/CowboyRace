@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://qgbqggafinxc"]
+
+[ext_resource type="PackedScene" uid="uid://bp0m4q62sniwa" path="res://train_car_basic.tscn" id="1_smchp"]
+[ext_resource type="PackedScene" uid="uid://y3l5vdaeqqu4" path="res://cowboy_basic.tscn" id="2_wfll1"]
+[ext_resource type="PackedScene" uid="uid://b78i7utyp2m2e" path="res://train_track.tscn" id="3_oswyg"]
+[ext_resource type="PackedScene" uid="uid://ibh16xbbj1me" path="res://desert_backround.tscn" id="4_ljc2u"]
+[ext_resource type="PackedScene" uid="uid://cqeji42bysi0e" path="res://train_car_hatch.tscn" id="5_ot2ra"]
+
+[node name="BasicWorld" type="Node2D"]
+
+[node name="CowboyBasic" parent="." instance=ExtResource("2_wfll1")]
+z_index = 2
+position = Vector2(38, 160)
+
+[node name="Trains" type="Node" parent="."]
+
+[node name="TrainTrack2" parent="Trains" instance=ExtResource("3_oswyg")]
+position = Vector2(719, 232)
+
+[node name="TrainTrack4" parent="Trains" instance=ExtResource("3_oswyg")]
+position = Vector2(-721, 232)
+
+[node name="TrainTrack3" parent="Trains" instance=ExtResource("3_oswyg")]
+position = Vector2(-241, 232)
+
+[node name="TrainTrack" parent="Trains" instance=ExtResource("3_oswyg")]
+position = Vector2(239, 232)
+
+[node name="TrainCarBasic4" parent="Trains" instance=ExtResource("1_smchp")]
+position = Vector2(576, 187)
+
+[node name="TrainCarBasic3" parent="Trains" instance=ExtResource("1_smchp")]
+position = Vector2(400, 188)
+
+[node name="TrainCarBasic2" parent="Trains" instance=ExtResource("1_smchp")]
+position = Vector2(240, 189)
+
+[node name="TrainCarBasic" parent="Trains" instance=ExtResource("1_smchp")]
+position = Vector2(80, 189)
+
+[node name="DesertBackround" parent="." instance=ExtResource("4_ljc2u")]
+scroll_ignore_camera_zoom = true
+
+[node name="TrainCarHatch" parent="." instance=ExtResource("5_ot2ra")]
+position = Vector2(735, 188)
+
+[node name="TrainCarHatch2" parent="." instance=ExtResource("5_ot2ra")]
+position = Vector2(895, 189)
+
+[node name="TrainCarHatch3" parent="." instance=ExtResource("5_ot2ra")]
+position = Vector2(-78, 189)

@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqeji42bysi0e"]
+
+[ext_resource type="Script" path="res://TrainCarHatch.gd" id="1_nrxq5"]
+[ext_resource type="Texture2D" uid="uid://cev472wsupkxo" path="res://Assets/TrainWithHatch.png" id="2_xy7kf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8loe"]
+atlas = ExtResource("2_xy7kf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bumn"]
+atlas = ExtResource("2_xy7kf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lts8q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8loe")
+}],
+"loop": false,
+"name": &"Closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bumn")
+}],
+"loop": true,
+"name": &"Open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugo6s"]
+size = Vector2(30, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_paejk"]
+size = Vector2(22, 16)
+
+[node name="TrainCarHatch" type="StaticBody2D"]
+script = ExtResource("1_nrxq5")
+
+[node name="Floor" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-80, 50, 80, 50, 80, 69, 75, 69, 59, 80, -65, 80, -70, 75, -75, 60, -80, 55)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_lts8q")
+animation = &"Closed"
+
+[node name="RoofRight" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -20, 0, -5, 75, -5, 75, 25, 80, 25, 80, -20)
+
+[node name="RoofLeft" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-30, -20, -30, -5, -75, -5, -75, 0, -80, 0, -80, -20)
+
+[node name="Hatch" type="CollisionShape2D" parent="."]
+position = Vector2(-15, -17.5)
+shape = SubResource("RectangleShape2D_ugo6s")
+
+[node name="Lever" type="Area2D" parent="."]
+
+[node name="LeverHitBox" type="CollisionShape2D" parent="Lever"]
+position = Vector2(6, -28)
+shape = SubResource("RectangleShape2D_paejk")
+
+[node name="LeverHitBox2" type="CollisionShape2D" parent="Lever"]
+position = Vector2(6, 3)
+shape = SubResource("RectangleShape2D_paejk")
+
+[node name="HatchOpen" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-10, -40, -5, -30, 0, -20, 0, -15, -5, -15, -10, -20, -15, -30, -15, -40)
+
+[connection signal="area_entered" from="Lever" to="." method="_on_lever_area_entered"]
