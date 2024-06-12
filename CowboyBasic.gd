@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 
 @export var bullet: PackedScene
-@onready var backround = $"../DesertBackround"
+#@onready var backround = $"/DesertBackround"
 
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -12,7 +12,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var anim = $AnimatedSprite2D
 
 const timeToMax = 0.75
-const SPEED = 300.0
+@export var SPEED = 250.0
 const JUMP_VELOCITY = -400.0
 
 @onready var leftGunBarrel = $LeftGunBarrel
@@ -31,6 +31,9 @@ var beenShot = false
 var timeSinceShot = 0.0
 const DEFAULTTIMESINCESHOT = 0.75
 
+
+#var resetJump = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -44,9 +47,12 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
+	
+	#
 	# Handle jump.
-	if Input.is_joy_button_pressed(player_id, JOY_BUTTON_A) and is_on_floor():
+	if Input.get_joy_axis(player_id, JOY_AXIS_TRIGGER_LEFT) > 0.5 and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		
 	
 	
 	var direction = Input.get_joy_axis(player_id, JOY_AXIS_LEFT_X)

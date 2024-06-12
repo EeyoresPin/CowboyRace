@@ -1,6 +1,7 @@
 extends Camera2D
 
-#@onready var backround = $"../DesertBackround"
+
+@onready var backround = $"../DesertBackround"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,4 +15,4 @@ func _process(delta):
 
 func setPosition(newPosX):
 	self.position.x =  newPosX
-	#backround.setOffset(self.position.x)
+	backround.setOffset(self.position.x)

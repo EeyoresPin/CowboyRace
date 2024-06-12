@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx0mw5rp7bgw1"]
+
+[ext_resource type="Script" path="res://tracks.gd" id="1_sh3dh"]
+[ext_resource type="PackedScene" uid="uid://b78i7utyp2m2e" path="res://train_track.tscn" id="1_sls8o"]
+
+[node name="Tracks" type="Node"]
+script = ExtResource("1_sh3dh")
+rail = ExtResource("1_sls8o")

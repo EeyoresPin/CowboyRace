@@ -17,8 +17,8 @@ func _process(delta):
 
 
 func setOffset(pos):
-	#offset.x = pos - offsetOffset
-	pass
+	offset.x = pos 
+	
 
 	
 	

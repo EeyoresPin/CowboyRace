@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://qgbqggafinxc"]
+[gd_scene load_steps=7 format=3 uid="uid://qgbqggafinxc"]
 
-[ext_resource type="PackedScene" uid="uid://bp0m4q62sniwa" path="res://train_car_basic.tscn" id="1_smchp"]
+[ext_resource type="PackedScene" uid="uid://i0qckeyrv860" path="res://train.tscn" id="1_ed65m"]
 [ext_resource type="PackedScene" uid="uid://y3l5vdaeqqu4" path="res://cowboy_basic.tscn" id="2_wfll1"]
-[ext_resource type="PackedScene" uid="uid://b78i7utyp2m2e" path="res://train_track.tscn" id="3_oswyg"]
+[ext_resource type="PackedScene" uid="uid://cx0mw5rp7bgw1" path="res://tracks.tscn" id="3_qj4at"]
 [ext_resource type="PackedScene" uid="uid://ibh16xbbj1me" path="res://desert_backround.tscn" id="4_ljc2u"]
-[ext_resource type="PackedScene" uid="uid://cqeji42bysi0e" path="res://train_car_hatch.tscn" id="5_ot2ra"]
 [ext_resource type="Script" path="res://Players.gd" id="5_serjk"]
 [ext_resource type="Script" path="res://WorldCamera.gd" id="7_a2a2e"]
 
@@ -13,54 +12,21 @@
 [node name="DesertBackround" parent="." instance=ExtResource("4_ljc2u")]
 scroll_ignore_camera_zoom = true
 
-[node name="Trains" type="Node" parent="."]
+[node name="Train" parent="." instance=ExtResource("1_ed65m")]
+totalActiveCars = 20
 
-[node name="TrainTrack2" parent="Trains" instance=ExtResource("3_oswyg")]
-position = Vector2(719, 232)
-
-[node name="TrainTrack4" parent="Trains" instance=ExtResource("3_oswyg")]
-position = Vector2(-721, 232)
-
-[node name="TrainTrack3" parent="Trains" instance=ExtResource("3_oswyg")]
-position = Vector2(-241, 232)
-
-[node name="TrainTrack" parent="Trains" instance=ExtResource("3_oswyg")]
-position = Vector2(239, 232)
-
-[node name="TrainCarBasic4" parent="Trains" instance=ExtResource("1_smchp")]
-position = Vector2(576, 187)
-
-[node name="TrainCarBasic3" parent="Trains" instance=ExtResource("1_smchp")]
-position = Vector2(400, 188)
-
-[node name="TrainCarBasic2" parent="Trains" instance=ExtResource("1_smchp")]
-position = Vector2(240, 189)
-
-[node name="TrainCarBasic" parent="Trains" instance=ExtResource("1_smchp")]
-position = Vector2(80, 189)
-
-[node name="TrainCarHatch" parent="Trains" instance=ExtResource("5_ot2ra")]
-position = Vector2(735, 188)
-
-[node name="TrainCarHatch2" parent="Trains" instance=ExtResource("5_ot2ra")]
-position = Vector2(895, 189)
-
-[node name="TrainCarHatch3" parent="Trains" instance=ExtResource("5_ot2ra")]
-position = Vector2(-78, 189)
+[node name="Tracks" parent="." instance=ExtResource("3_qj4at")]
 
 [node name="Players" type="Node2D" parent="."]
 script = ExtResource("5_serjk")
 
-[node name="CowboyBasic2" parent="Players" instance=ExtResource("2_wfll1")]
-z_index = 2
-position = Vector2(38, 160)
-player_id = 1
-
 [node name="CowboyBasic" parent="Players" instance=ExtResource("2_wfll1")]
 z_index = 2
-position = Vector2(82, 159)
+position = Vector2(54, 58)
+SPEED = 200.0
 
 [node name="WorldCamera" type="Camera2D" parent="."]
-position = Vector2(0, 140)
+position = Vector2(851, 202)
+offset = Vector2(0, 10)
 zoom = Vector2(3, 3)
 script = ExtResource("7_a2a2e")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqeji42bysi0e"]
+[gd_scene load_steps=12 format=3 uid="uid://cqeji42bysi0e"]
 
 [ext_resource type="Script" path="res://TrainCarHatch.gd" id="1_nrxq5"]
 [ext_resource type="Texture2D" uid="uid://cev472wsupkxo" path="res://Assets/TrainWithHatch.png" id="2_xy7kf"]
+[ext_resource type="Texture2D" uid="uid://fbl0bv4ssvcv" path="res://Assets/TrainConnector.png" id="3_ghqkd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t8loe"]
 atlas = ExtResource("2_xy7kf")
@@ -31,43 +32,77 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ugo6s"]
-size = Vector2(30, 5)
+size = Vector2(30, 5.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_paejk"]
-size = Vector2(22, 16)
+size = Vector2(22, 18)
 
-[node name="TrainCarHatch" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqyjb"]
+size = Vector2(29, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mswg0"]
+size = Vector2(160, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7f51r"]
+size = Vector2(161, 21)
+
+[node name="TrainCarHatch" type="RigidBody2D"]
+mass = 10000.0
+gravity_scale = 0.5
 script = ExtResource("1_nrxq5")
 
-[node name="Floor" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-80, 50, 80, 50, 80, 69, 75, 69, 59, 80, -65, 80, -70, 75, -75, 60, -80, 55)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(80, 20)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_lts8q")
 animation = &"Closed"
 
 [node name="RoofRight" type="CollisionPolygon2D" parent="."]
+position = Vector2(79, 20)
 polygon = PackedVector2Array(0, -20, 0, -5, 75, -5, 75, 25, 80, 25, 80, -20)
 
 [node name="RoofLeft" type="CollisionPolygon2D" parent="."]
+position = Vector2(80, 20)
 polygon = PackedVector2Array(-30, -20, -30, -5, -75, -5, -75, 0, -80, 0, -80, -20)
 
 [node name="Hatch" type="CollisionShape2D" parent="."]
-position = Vector2(-15, -17.5)
+position = Vector2(65, 2.75)
 shape = SubResource("RectangleShape2D_ugo6s")
 
 [node name="Lever" type="Area2D" parent="."]
 
 [node name="LeverHitBox" type="CollisionShape2D" parent="Lever"]
-position = Vector2(6, -28)
+position = Vector2(88, -10)
 shape = SubResource("RectangleShape2D_paejk")
 
 [node name="LeverHitBox2" type="CollisionShape2D" parent="Lever"]
-position = Vector2(6, 3)
+position = Vector2(86, 23)
 shape = SubResource("RectangleShape2D_paejk")
 
 [node name="HatchOpen" type="CollisionPolygon2D" parent="."]
+position = Vector2(82, 15)
 polygon = PackedVector2Array(-10, -40, -5, -30, 0, -20, 0, -15, -5, -15, -10, -20, -15, -30, -15, -40)
 
+[node name="Connector" type="CollisionShape2D" parent="."]
+position = Vector2(174.5, 82.5)
+shape = SubResource("RectangleShape2D_kqyjb")
+
+[node name="TrainConnector" type="Sprite2D" parent="."]
+position = Vector2(174, 85)
+scale = Vector2(5, 5)
+texture = ExtResource("3_ghqkd")
+
+[node name="Floor" type="CollisionShape2D" parent="."]
+position = Vector2(81, 72.5)
+shape = SubResource("RectangleShape2D_mswg0")
+
+[node name="Wheels" type="CollisionShape2D" parent="."]
+position = Vector2(80.5, 88.5)
+shape = SubResource("RectangleShape2D_7f51r")
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
 [connection signal="area_entered" from="Lever" to="." method="_on_lever_area_entered"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_timer_timeout"]

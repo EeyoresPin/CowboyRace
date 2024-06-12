@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bp0m4q62sniwa"]
+[gd_scene load_steps=8 format=3 uid="uid://bp0m4q62sniwa"]
 
 [ext_resource type="Texture2D" uid="uid://bq21afxdha5ql" path="res://Assets/TrainBasic.png" id="1_14noq"]
+[ext_resource type="Script" path="res://train_car_basic.gd" id="1_qeymk"]
+[ext_resource type="Texture2D" uid="uid://fbl0bv4ssvcv" path="res://Assets/TrainConnector.png" id="2_tfvei"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sv55d"]
 animations = [{
@@ -13,16 +15,50 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="TrainCarBasic" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nupqx"]
+size = Vector2(28, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1mqw"]
+size = Vector2(160, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tllu2"]
+size = Vector2(161, 21)
+
+[node name="TrainCarBasic" type="RigidBody2D"]
+mass = 10000.0
+gravity_scale = 0.5
+script = ExtResource("1_qeymk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
+position = Vector2(80, 20)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_sv55d")
 animation = &"Closed"
 
 [node name="Roof" type="CollisionPolygon2D" parent="."]
+position = Vector2(80, 20)
 polygon = PackedVector2Array(-80, -15, -80, -20, -75, -20, 75, -20, 80, -20, 80, -15, 80, 25, 75, 25, 75, -5, -75, -5, -75, 0, -80, 0)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-80, 50, 80, 50, 80, 69, 75, 69, 59, 80, -65, 80, -70, 75, -75, 60, -80, 55)
+[node name="TrainConnector" type="Sprite2D" parent="."]
+position = Vector2(175, 85)
+scale = Vector2(5, 5)
+texture = ExtResource("2_tfvei")
+
+[node name="Connector" type="CollisionShape2D" parent="."]
+position = Vector2(176, 82.5)
+shape = SubResource("RectangleShape2D_nupqx")
+
+[node name="Floor" type="CollisionShape2D" parent="."]
+position = Vector2(81, 72.5)
+shape = SubResource("RectangleShape2D_p1mqw")
+
+[node name="Wheels" type="CollisionShape2D" parent="."]
+position = Vector2(80.5, 88.5)
+shape = SubResource("RectangleShape2D_tllu2")
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_timer_timeout"]
